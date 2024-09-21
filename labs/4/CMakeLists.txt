@@ -1,4 +1,4 @@
-add_executable(task4_unit tests/unit.cpp solution.cpp)
+add_executable(task4_unit tests/unit.cpp)
 
 target_link_libraries(task4_unit PRIVATE gtest_main)
 
