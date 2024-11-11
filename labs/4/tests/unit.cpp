@@ -1,6 +1,6 @@
-#include "array.hpp"
-#include "rectangle.hpp"
-#include "square.hpp"
+#include "../array.hpp"
+#include "../rectangle.hpp"
+#include "../square.hpp"
 #include <cassert>
 #include <iostream>
 
