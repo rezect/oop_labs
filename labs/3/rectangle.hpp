@@ -4,15 +4,15 @@
 
 class Rectangle : public Figure {
 public:
-  Rectangle() : left_down(Coords(0.0, 0.0)), right_up(Coords(0.0, 0.0)) {}
+  Rectangle() : left_down(Point(0.0, 0.0)), right_up(Point(0.0, 0.0)) {}
 
-  Rectangle(Coords left_down,
-            Coords right_up)
+  Rectangle(Point left_down,
+            Point right_up)
       : left_down(left_down), right_up(right_up) {}
 
-  Rectangle(Coords &left_down, double height, double width)
+  Rectangle(Point &left_down, double height, double width)
       : left_down(left_down) {
-    right_up = Coords(left_down.x + width,
+    right_up = Point(left_down.x + width,
                                          left_down.y + height);
   }
 
@@ -26,11 +26,11 @@ public:
     right_up = std::move(other.right_up);
   }
 
-  Coords center() override {
+  Point center() override {
     double x_center = 0.0, y_center = 0.0;
     x_center = (left_down.x + right_up.x) / 2;
     y_center = (left_down.y + right_up.y) / 2;
-    return (Coords(x_center, y_center));
+    return (Point(x_center, y_center));
   }
 
   friend std::ostream &operator<<(std::ostream &, Rectangle &s) {
@@ -79,5 +79,5 @@ public:
   virtual ~Rectangle() = default;
 
 private:
-  Coords left_down, right_up;
+  Point left_down, right_up;
 };

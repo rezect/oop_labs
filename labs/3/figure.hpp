@@ -3,30 +3,30 @@
 #include <iostream>
 #include <utility>
 
-class Coords {
+class Point {
 public:
   double x, y;
 
 public:
-  Coords() : x(0.0), y(0.0) {}
+  Point() : x(0.0), y(0.0) {}
 
-  Coords(double x, double y) : x(x), y(y) {}
+  Point(double x, double y) : x(x), y(y) {}
 
-  Coords(Coords &other) : x(other.x), y(other.y) {}
+  Point(Point &other) : x(other.x), y(other.y) {}
 
-  Coords(Coords &&other) : x(other.x), y(other.y) {
+  Point(Point &&other) : x(other.x), y(other.y) {
     other.x = 0.0;
     other.y = 0.0;
   }
 
-  Coords &operator=(const Coords &other) {
+  Point &operator=(const Point &other) {
     if (*this == other) return *this;
     x = other.x;
     y = other.y;
     return *this;
   }
 
-  Coords &operator=(Coords &&other) {
+  Point &operator=(Point &&other) {
     if (*this == other) return *this;
     x = other.x;
     y = other.y;
@@ -35,26 +35,26 @@ public:
     return *this;
   }
 
-  bool operator==(const Coords &other) const {
+  bool operator==(const Point &other) const {
     return (x == other.x && y == other.y);
   }
 
-  ~Coords() = default;
+  ~Point() = default;
 };
 
-std::istream &operator>>(std::istream &, Coords c) {
+std::istream &operator>>(std::istream &, Point c) {
   std::cin >> c.x >> c.y;
   return std::cin;
 }
 
-std::ostream &operator<<(std::ostream &, Coords c) {
+std::ostream &operator<<(std::ostream &, Point c) {
   std::cout << "(" << c.x << ", " << c.y << ")";
   return std::cout;
 }
 
 class Figure {
 public:
-  virtual Coords center() = 0;
+  virtual Point center() = 0;
 
   virtual operator double() const = 0;
 

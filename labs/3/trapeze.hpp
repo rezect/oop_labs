@@ -3,14 +3,14 @@
 class Trapeze : public Figure {
 public:
   Trapeze()
-      : left_down(Coords(0.0, 0.0)), left_up(Coords(0.0, 0.0)),
-        right_up(Coords(0.0, 0.0)), right_down(Coords(0.0, 0.0)) {}
+      : left_down(Point(0.0, 0.0)), left_up(Point(0.0, 0.0)),
+        right_up(Point(0.0, 0.0)), right_down(Point(0.0, 0.0)) {}
 
-  Trapeze(Coords left_down, Coords left_up, Coords right_up, Coords right_down)
+  Trapeze(Point left_down, Point left_up, Point right_up, Point right_down)
       : left_down(left_down), left_up(left_up), right_up(right_up),
         right_down(right_down) {}
 
-  Coords center() {
+  Point center() {
     double x_center = 0.0;
     double y_center = 0.0;
     double q = right_up.x - left_up.x;
@@ -19,7 +19,7 @@ public:
     x_center = h / 2;
     y_center = ((2 * q + p) * h) / (3 * (p + q));
 
-    return Coords(x_center, y_center);
+    return Point(x_center, y_center);
   }
 
   Trapeze &operator=(const Trapeze &other) {
@@ -63,5 +63,5 @@ public:
   }
 
 private:
-  Coords left_down, left_up, right_up, right_down;
+  Point left_down, left_up, right_up, right_down;
 };
