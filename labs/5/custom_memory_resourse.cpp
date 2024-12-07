@@ -26,7 +26,7 @@ protected:
         void *aligned_address = static_cast<void *>(block.address);
         block.is_free = false;
         blocks.push_back(
-            BlockInfo(true, aligned_address + __bytes, block.size - __bytes));
+            BlockInfo(true, shift_pointer(aligned_address, __bytes), block.size - __bytes));
         
         return aligned_address;
       }
@@ -55,6 +55,11 @@ public:
   }
 
   ~CustomMemoryResourse() { ::operator delete(memory); }
+
+private:
+  void* shift_pointer(void* ptr, std::ptrdiff_t bytes) {
+    return static_cast<void*>(static_cast<char*>(ptr) + bytes);
+  }
 };
 
 template <typename T> class MyStack {

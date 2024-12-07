@@ -88,7 +88,12 @@ TEST(CustomMemoryResourseTest, AllocationThrowsWhenOutOfMemory) {
   CustomMemoryResourse mem_res(memory_size);
   std::pmr::polymorphic_allocator<int> alloc(&mem_res);
 
-  EXPECT_THROW(alloc.allocate(100), std::bad_alloc);
+  EXPECT_THROW(
+      {
+        int *ptr = alloc.allocate(100);
+        (void)ptr; // Явно указываем, что не используем ptr
+      },
+      std::bad_alloc);
 }
 
 TEST(MyStackTest, PushAndTop) {
